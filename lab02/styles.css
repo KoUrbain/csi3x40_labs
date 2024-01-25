@@ -1,5 +1,30 @@
 h2.entete{
-    font-size: large;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 200%;
+    font-family: 'Times New Roman';
     font-weight: bold;
+    margin-bottom: -15px;
+}
+.info{
+    margin-top: -40px;
+    float : right;
+}
+.sub{
+    font-size: 150%;
+    margin-top: 85px;
+    margin-bottom: -30px;
+}
+.sub1{
+    font-size: 150%;
+    margin-bottom: -10px;
+}
+.subT{
+    font-weight: bold;
+    font-style: italic;
+    
+    margin-bottom: -10px;
+}
+.date{
+    float: right;
+    margin-top: -10px;
+    margin-bottom: 10px;
 }
