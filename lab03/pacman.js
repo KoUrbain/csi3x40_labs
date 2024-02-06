@@ -82,10 +82,11 @@ function eatPastille(gameBoard, nextPos){
 }
 
 function completed(board){
+    let done = false;
     if(!board.includes(".")){
-        console.log("Congratulations you completed the game... Next level loading");
-        console.log(createGame(parseInt(n/2)));
+        done = true;
     }
+    return done;
 }
 
 // Essai 1
@@ -110,3 +111,9 @@ console.log(pacmanGame);
 
 pacmanGame = moveLeft(pacmanGame);
 console.log(pacmanGame);
+
+won = completed(pacmanGame);
+if(won == true){
+    console.log("Congratulations you completed the game... Next level loading");
+    console.log(createGame(parseInt(n/2))); // crée un nouveau jeu plus petit
+}
