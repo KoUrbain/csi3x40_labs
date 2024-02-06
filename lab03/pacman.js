@@ -18,7 +18,7 @@ function createGame(n) {
     let gameArray = Array(n).fill(".");
 
     // Placez le Pacman, le fantôme et le fruit a des positions arbitraires
-    pacmanIndex = n-1;
+    pacmanIndex = 0;
     ghostIndex = parseInt(n/2);
     fruitIndex = 1;
 
@@ -28,38 +28,68 @@ function createGame(n) {
 
     return gameArray;
 }
-// Essai 1
-let pacmanGame = createGame(n);
-console.log(pacmanGame);
 
 function moveLeft(game){
-    if(pacmanIndex - 1 >= 0){ // verifie si le prochain emplacement n'est pas hors du tableau
-        game[pacmanIndex] ="."; // remplace par '.' la position que vien de quitter pacman 
-        game[--pacmanIndex] = "C";
+    let prev = pacmanIndex -1; // next position
+    if(prev < 0){
+        prev = n-1;
+    }
+
+    if(prev >= 0){ // verifie si le prochain emplacement n'est pas hors du tableau
+        game[pacmanIndex] =" "; // remplace par ' ' la position que vien de quitter pacman 
+        
+
+            if(game[prev] == "."){
+                eatPastille(pacmanGame, prev);
+            }
+            game[prev] = "C";
+            pacmanIndex = prev;
+        
     }
     else{
-        game[pacmanIndex] ="."; 
+        game[pacmanIndex] =" "; 
+        if(game[n-1] == "."){
+            eatPastille(pacmanGame, prev);
+        }
         game[n-1] = "C";// ramene pacman a la fin du tableau
     }
     return game;
 }
 function moveRight(game){
-    if(pacmanIndex +1 <n){ // verifie si le prochain emplacement n'est pas hors du tableau
-        game[pacmanIndex] =".";  
+    let next = pacmanIndex+1; // next position
+    if(next < n){ // verifie si le prochain emplacement n'est pas hors du tableau
+        game[pacmanIndex] =" ";  
+        if(game[next] == "."){
+            eatPastille(pacmanGame, prev);
+        }
         game[++pacmanIndex] = "C";
     }
     else{
-        game[pacmanIndex] ="."
+        game[pacmanIndex] =" "
+        if(game[0] == "."){
+            eatPastille(pacmanGame, 0);
+        }
         game[0] = "C";// ramene pacman au debut du tableau
     }
     return game;
 }
+
+function eatPastille(gameBoard, nextPos){
+    gameBoard[nextPos]="O"; // pacmane se ferme pour avalaer les pastille
+    console.log(gameBoard); // display eating
+}
+
+// Essai 1
+let pacmanGame = createGame(n);
+console.log(pacmanGame);
+
 // Essaie 2
 pacmanGame = moveLeft(pacmanGame);
 console.log(pacmanGame);
 // Essaie 3
-pacmanGame = moveRight(pacmanGame);
+pacmanGame = moveLeft(pacmanGame);
 console.log(pacmanGame);
 // Essaie 4
 pacmanGame = moveRight(pacmanGame);
 console.log(pacmanGame);
+
