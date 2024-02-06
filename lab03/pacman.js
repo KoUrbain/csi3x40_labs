@@ -52,7 +52,9 @@ function moveLeft(game){
             eatPastille(pacmanGame, prev);
         }
         game[n-1] = "C";// ramene pacman a la fin du tableau
+        
     }
+    
     return game;
 }
 function moveRight(game){
@@ -79,6 +81,13 @@ function eatPastille(gameBoard, nextPos){
     console.log(gameBoard); // display eating
 }
 
+function completed(board){
+    if(!board.includes(".")){
+        console.log("Congratulations you completed the game... Next level loading");
+        console.log(createGame(parseInt(n/2)));
+    }
+}
+
 // Essai 1
 let pacmanGame = createGame(n);
 console.log(pacmanGame);
@@ -93,3 +102,11 @@ console.log(pacmanGame);
 pacmanGame = moveRight(pacmanGame);
 console.log(pacmanGame);
 
+pacmanGame = moveLeft(pacmanGame);
+console.log(pacmanGame);
+
+pacmanGame = moveLeft(pacmanGame);
+console.log(pacmanGame);
+
+pacmanGame = moveLeft(pacmanGame);
+console.log(pacmanGame);
